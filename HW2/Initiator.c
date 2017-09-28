@@ -28,6 +28,11 @@ int main(int argc, char const *argv[])
 	int consonants, vowels, others;
 	// child process for Consonants
 	child_1 = fork();
+	
+	if (child_1< 0){
+                fprintf(stderr, "Process Failed!");
+                return 1;
+}
 
 	if(child_1 == 0){
 		printf("Initiator: forked process with ID %d\n", getpid());
@@ -40,9 +45,14 @@ int main(int argc, char const *argv[])
         if(WIFEXITED(statval))
         	vowels = WEXITSTATUS(statval);
 		printf("Initiator: child process %d returned %d.\n", child_1, vowels);
+		
 
         // child process for Vowels
         child_2 = fork();
+		if (child_2 < 0){
+                fprintf(stderr, "Process Failed!");
+                return 1;
+		} 
 		if(child_2 == 0){
 			printf("Initiator: forked process with ID %d\n", getpid());
 			char *args[] = { "./Consonants", buffer, NULL };
@@ -57,6 +67,11 @@ int main(int argc, char const *argv[])
 		    
 		    // child process for Others 	      	
 	    	child_3 = fork();
+			
+			if (child_3 < 0){
+                fprintf(stderr, "Process Failed!");
+                return 1;
+		} 
 			if(child_3 == 0){
 				child_pid = getpid();
 				printf("Initiator: forked process with ID %d\n", getpid());

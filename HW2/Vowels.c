@@ -1,6 +1,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <ctype.h>
+#include<stdio.h>
 
 int isvowel(int ch){
   int c = (int)toupper(ch);
@@ -9,7 +10,7 @@ int isvowel(int ch){
 }
 
 int main(int argc, char const *argv[]){
-	
+       	
 	int ret = 0;
 	int len = strlen(argv[1]);
 	for(int i = 0; i < len; i++){
